@@ -48,7 +48,7 @@ class bagBackground extends JPanel {
 public class Bag{
 // 變數定義
 	// 定義JFrame
-	private JFrame bagFrame;
+	private static JFrame bagFrame;
 	
 	// 定義exitbutton
 	JButton exitbutton = new JButton(new ImageIcon(System.getProperty("user.dir") + "\\image\\exit.png"));// 離開按鈕
@@ -149,12 +149,33 @@ public class Bag{
 	
 	// 定義並初始化DialogPanel裡面要放的Label的Panel
 	JPanel axeLabelPanel = new JPanel();
+	JPanel BlueMagicStickLabelPanel = new JPanel();
+	JPanel MagicBookLabelPanel = new JPanel();
+	JPanel MagicStickLabelPanel = new JPanel();
+	JPanel PurpleSwordLabelPanel = new JPanel();
+	JPanel SwordLabelPanel = new JPanel();
+	
 	
 	
 	// 定義並初始化DialogPanel裡面放裝備圖片的Label
 	JLabel axeLabel = new JLabel(axe_icon);
 	JLabel axeNameLabel = new JLabel("屠戮之斧");
 	JLabel axeStatusLabel = new JLabel("ATTACK +10");
+	JLabel BlueMagicStickLabel = new JLabel(blueMagicStick_icon);
+	JLabel BlueMagicStickNameLabel = new JLabel("幽冥法杖");
+	JLabel BlueMagicStickStatusLabel = new JLabel("ATTACK +10");
+	JLabel MagicBookLabel = new JLabel(magicBook_icon);
+	JLabel MagicBookNameLabel = new JLabel("秘咒之典");
+	JLabel MagicBookStatusLabel = new JLabel("ATTACK +10");
+	JLabel MagicStickLabel = new JLabel(magicStick_icon);
+	JLabel MagicStickNameLabel = new JLabel("日炬之杖");
+	JLabel MagicStickStatusLabel = new JLabel("ATTACK +10");
+	JLabel PurpleSwordLabel = new JLabel(purpleSword_icon);
+	JLabel PurpleSwordNameLabel = new JLabel("碎魂之刃");
+	JLabel PurpleSwordStatusLabel = new JLabel("ATTACK +10");
+	JLabel SwordLabel = new JLabel(sword_icon);
+	JLabel SwordNameLabel = new JLabel("焰心之刃");
+	JLabel SwordStatusLabel = new JLabel("ATTACK +10");
 	
 	
 	
@@ -169,10 +190,22 @@ public class Bag{
 	
 	final AtomicInteger button_num = new AtomicInteger(0);  // 使用 AtomicInteger 作為計數器
 	
-	public Bag() {
+	private static Bag instance;
+	
+	private Bag() {
 		setBag();
 		bagFrame.setVisible(true);
 	}
+	
+	public static Bag getInstance() {
+        if (instance == null) {
+            instance = new Bag();
+        }
+        else {
+        	bagFrame.setVisible(true);
+        }
+        return instance;
+    }
 	
 	public void setBag() {
 // 初始化並設置		
@@ -282,29 +315,110 @@ public class Bag{
     	axeNameLabel.setForeground(new Color(0x03D79));
     	axeStatusLabel.setFont(buttonFont);
     	axeStatusLabel.setForeground(Color.RED);
+    	BlueMagicStickNameLabel.setFont(itemFont);
+    	BlueMagicStickNameLabel.setForeground(new Color(0x03D79));
+    	BlueMagicStickStatusLabel.setFont(buttonFont);
+    	BlueMagicStickStatusLabel.setForeground(Color.RED);
+    	MagicBookNameLabel.setFont(itemFont);
+    	MagicBookNameLabel.setForeground(new Color(0x03D79));
+    	MagicBookStatusLabel.setFont(buttonFont);
+    	MagicBookStatusLabel.setForeground(Color.RED);
+    	MagicStickNameLabel.setFont(itemFont);
+    	MagicStickNameLabel.setForeground(new Color(0x03D79));
+    	MagicStickStatusLabel.setFont(buttonFont);
+    	MagicStickStatusLabel.setForeground(Color.RED);
+    	PurpleSwordNameLabel.setFont(itemFont);
+    	PurpleSwordNameLabel.setForeground(new Color(0x03D79));
+    	PurpleSwordStatusLabel.setFont(buttonFont);
+    	PurpleSwordStatusLabel.setForeground(Color.RED);
+    	SwordNameLabel.setFont(itemFont);
+    	SwordNameLabel.setForeground(new Color(0x03D79));
+    	SwordStatusLabel.setFont(buttonFont);
+    	SwordStatusLabel.setForeground(Color.RED);
     	
     	// 設置DialogPanel裡面的LabelPanel
     	axeLabelPanel.setLayout(new BoxLayout(axeLabelPanel, BoxLayout.Y_AXIS));    
     	axeLabelPanel.add(axeNameLabel);
     	axeLabelPanel.add(Box.createVerticalStrut(20));
     	axeLabelPanel.add(axeStatusLabel);
+    	BlueMagicStickLabelPanel.setLayout(new BoxLayout(BlueMagicStickLabelPanel, BoxLayout.Y_AXIS));    
+    	BlueMagicStickLabelPanel.add(BlueMagicStickNameLabel);
+    	BlueMagicStickLabelPanel.add(Box.createVerticalStrut(20));
+    	BlueMagicStickLabelPanel.add(BlueMagicStickStatusLabel);
+    	MagicBookLabelPanel.setLayout(new BoxLayout(MagicBookLabelPanel, BoxLayout.Y_AXIS));    
+    	MagicBookLabelPanel.add(MagicBookNameLabel);
+    	MagicBookLabelPanel.add(Box.createVerticalStrut(20));
+    	MagicBookLabelPanel.add(MagicBookStatusLabel);
+    	MagicStickLabelPanel.setLayout(new BoxLayout(MagicStickLabelPanel, BoxLayout.Y_AXIS));    
+    	MagicStickLabelPanel.add(MagicStickNameLabel);
+    	MagicStickLabelPanel.add(Box.createVerticalStrut(20));
+    	MagicStickLabelPanel.add(MagicStickStatusLabel);
+    	PurpleSwordLabelPanel.setLayout(new BoxLayout(PurpleSwordLabelPanel, BoxLayout.Y_AXIS));    
+    	PurpleSwordLabelPanel.add(PurpleSwordNameLabel);
+    	PurpleSwordLabelPanel.add(Box.createVerticalStrut(20));
+    	PurpleSwordLabelPanel.add(PurpleSwordStatusLabel);
+    	SwordLabelPanel.setLayout(new BoxLayout(SwordLabelPanel, BoxLayout.Y_AXIS));    
+    	SwordLabelPanel.add(SwordNameLabel);
+    	SwordLabelPanel.add(Box.createVerticalStrut(20));
+    	SwordLabelPanel.add(SwordStatusLabel);
     	
     	// 設置DialogPanel加上裝備圖片以及裝備名稱
     	axePanel.add(axeLabel, itemIcon_DialogGridbag);
     	axePanel.add(axeLabelPanel, dgbc3);
+    	BlueMagicStickPanel.add(BlueMagicStickLabel, itemIcon_DialogGridbag);
+    	BlueMagicStickPanel.add(BlueMagicStickLabelPanel, dgbc3);
+    	MagicBookPanel.add(MagicBookLabel, itemIcon_DialogGridbag);
+    	MagicBookPanel.add(MagicBookLabelPanel, dgbc3);
+    	MagicStickPanel.add(MagicStickLabel, itemIcon_DialogGridbag);
+    	MagicStickPanel.add(MagicStickLabelPanel, dgbc3);
+    	PurpleSwordPanel.add(PurpleSwordLabel, itemIcon_DialogGridbag);
+    	PurpleSwordPanel.add(PurpleSwordLabelPanel, dgbc3);
+    	SwordPanel.add(SwordLabel, itemIcon_DialogGridbag);
+    	SwordPanel.add(SwordLabelPanel, dgbc3);
+    	
     	
     	// 裝備或取消按紐
     	axePanel.add(equipButton, dgbc1);
     	axePanel.add(cancelButton, dgbc2);
+    	BlueMagicStickPanel.add(equipButton, dgbc1);
+    	BlueMagicStickPanel.add(cancelButton, dgbc2);
+    	MagicBookPanel.add(equipButton, dgbc1);
+    	MagicBookPanel.add(cancelButton, dgbc2);
+    	MagicStickPanel.add(equipButton, dgbc1);
+    	MagicStickPanel.add(cancelButton, dgbc2);
+    	PurpleSwordPanel.add(equipButton, dgbc1);
+    	PurpleSwordPanel.add(cancelButton, dgbc2);
+    	SwordPanel.add(equipButton, dgbc1);
+    	SwordPanel.add(cancelButton, dgbc2);
     	
     	// 最後將dialog加上panel
     	axeDialog.setSize(250, 250);
     	axeDialog.add(axePanel);
+    	BlueMagicStickDialog.setSize(250, 250);
+    	BlueMagicStickDialog.add(BlueMagicStickPanel);
+    	MagicBookDialog.setSize(250, 250);
+    	MagicBookDialog.add(MagicBookPanel);
+    	MagicStickDialog.setSize(250, 250);
+    	MagicStickDialog.add(MagicStickPanel);
+    	PurpleSwordDialog.setSize(250, 250);
+    	PurpleSwordDialog.add(PurpleSwordPanel);
+    	SwordDialog.setSize(250, 250);
+    	SwordDialog.add(SwordPanel);
     	
     	int x = bagFrame.getX() + (bagFrame.getWidth()+350);
         int y = bagFrame.getY() + (bagFrame.getHeight()-350);
         axeDialog.setLocation(x, y);
         axeDialog.setIconImage(scaled_Axe_icon);
+        BlueMagicStickDialog.setLocation(x, y);
+        BlueMagicStickDialog.setIconImage(scaled_Axe_icon);
+        MagicBookDialog.setLocation(x, y);
+        MagicBookDialog.setIconImage(scaled_Axe_icon);
+        MagicStickDialog.setLocation(x, y);
+        MagicStickDialog.setIconImage(scaled_Axe_icon);
+        PurpleSwordDialog.setLocation(x, y);
+        PurpleSwordDialog.setIconImage(scaled_Axe_icon);
+        SwordDialog.setLocation(x, y);
+        SwordDialog.setIconImage(scaled_Axe_icon);
 		
 		// 滑鼠進入離開效果
 		MouseAdapter mouseAdapter = new MouseAdapter() {
@@ -325,52 +439,57 @@ public class Bag{
 		ActionListener actionListener = new ActionListener() {
             public void actionPerformed(ActionEvent e) {                  	
                 if (e.getSource() == exitbutton) {
-                    bagFrame.dispose();
+                    bagFrame.setVisible(false);
                     GameMainPage Mainpage = new GameMainPage();
                     Mainpage.frame.setVisible(true);
                 } else if (e.getSource() == Axe_button) {
                 	axeDialog.setVisible(true);
-                    button_num.set(1);}
+                    button_num.set(1);
 //                    GameFloor.attacklabel // 可設定攻擊力數值
-//                 else if (e.getSource() == BlueMagicStick_button) {
-//                    itemIcon = blueMagicStick_icon;
-//                    itemNameString = "幽冥法杖";
-//                    itemStatusString = "ATTACK +10";
-//                    button_num.set(2);
-//                } else if (e.getSource() == MagicBook_button) {
-//                    itemIcon = magicBook_icon;
-//                    itemNameString = "秘咒之典";
-//                    itemStatusString = "ATTACK +10";
-//                    button_num.set(3);
-//                } else if (e.getSource() == MagicStick_button) {
-//                    itemIcon = magicStick_icon;
-//                    itemNameString = "日炬之杖";
-//                    itemStatusString = "ATTACK +10";
-//                    button_num.set(4);
-//                } else if (e.getSource() == PurpleSword_button) {
-//                    itemIcon = purpleSword_icon;
-//                    itemNameString = "碎魂之刃";
-//                    itemStatusString = "ATTACK +10";
-//                    button_num.set(5);
-//                } else if (e.getSource() == Sword_button) {
-//                    itemIcon = sword_icon;
-//                    itemNameString = "焰心之刃";
-//                    itemStatusString = "ATTACK +10";
-//                    button_num.set(6);
-//                }
+                } else if (e.getSource() == BlueMagicStick_button) {
+                	BlueMagicStickDialog.setVisible(true);
+                    button_num.set(2);
+                } else if (e.getSource() == MagicBook_button) {
+                	MagicBookDialog.setVisible(true);
+                    button_num.set(3);
+                } else if (e.getSource() == MagicStick_button) {
+                	MagicStickDialog.setVisible(true);
+                    button_num.set(4);
+                } else if (e.getSource() == PurpleSword_button) {
+                	PurpleSwordDialog.setVisible(true);
+                    button_num.set(5);
+                } else if (e.getSource() == Sword_button) {
+                	SwordDialog.setVisible(true);
+                    button_num.set(6);
+                }
             }
 		};
 		exitbutton.addActionListener(actionListener);
 		
 		// 點擊裝備後按鈕就會標示已裝備
 		equipButton.addActionListener(closeEvent -> {
-						
-			Axe_button.setText("已裝備");
-//			BlueMagicStick_button.setText("已裝備");
-//			MagicBook_button.setText("已裝備");
-//			MagicStick_button.setText("已裝備");
-//			PurpleSword_button.setText("已裝備");
-//			Sword_button.setText("已裝備");
+			
+			switch (button_num.get()) {
+        	
+            case 1:
+                Axe_button.setText("已裝備");
+                break;
+            case 2:
+                BlueMagicStick_button.setText("已裝備");
+                break;
+            case 3: 
+            	MagicBook_button.setText("已裝備");
+            	break;
+            case 4:
+            	MagicStick_button.setText("已裝備");
+            	break;
+            case 5:
+            	PurpleSword_button.setText("已裝備");
+            	break;
+            case 6:
+            	Sword_button.setText("已裝備");
+            	break;
+        	}
 
         	// 裝備後將 isEquipped 設置為 false
             isEquipped.set(false);
